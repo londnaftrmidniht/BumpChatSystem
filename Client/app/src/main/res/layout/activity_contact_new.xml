@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contact_edit_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/contact_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="24sp"
+        android:labelFor="@id/contact_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/contact_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/contact_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/contact_name_label"
+        android:autofillHints="Contact Name" />
+
+    <TextView
+        android:id="@+id/pairing_instructions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/colorDarkText"
+        android:textSize="16sp"
+        android:text="@string/pairing_instructions"
+        app:layout_constraintTop_toBottomOf="@+id/contact_name"
+        />
+
+    <RelativeLayout
+        android:id="@+id/pairing_keys_generated"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_marginTop="48dp"
+        app:layout_constraintTop_toBottomOf="@+id/pairing_instructions">
+
+        <CheckBox
+            android:id="@+id/pairing_keys_generated_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:id="@+id/pairing_keys_generated_label"
+            android:gravity="fill_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/pairing_keys_generated_checkbox"
+            android:textColor="@color/colorDarkText"
+            android:textSize="22sp"
+            android:text="@string/pairing_keys_generated"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/inbox_created"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/pairing_keys_generated">
+
+        <CheckBox
+            android:id="@+id/inbox_created_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:id="@+id/inbox_created_label"
+            android:gravity="fill_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/inbox_created_checkbox"
+            android:textColor="@color/colorDarkText"
+            android:textSize="22sp"
+            android:text="@string/inbox_created"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/pairing_keys_received"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/inbox_created">
+
+        <CheckBox
+            android:id="@+id/pairing_keys_received_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:id="@+id/pairing_keys_received_label"
+            android:gravity="fill_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/pairing_keys_received_checkbox"
+            android:textColor="@color/colorDarkText"
+            android:textSize="22sp"
+            android:text="@string/keys_received"
+            />
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/pairing_keys_verified"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="vertical"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/pairing_keys_received">
+
+        <CheckBox
+            android:id="@+id/pairing_keys_verified_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:enabled="false" />
+
+        <TextView
+            android:id="@+id/pairing_keys_verified_label"
+            android:gravity="fill_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toEndOf="@id/pairing_keys_verified_checkbox"
+            android:textColor="@color/colorDarkText"
+            android:textSize="22sp"
+            android:text="@string/keys_verified"
+            />
+    </RelativeLayout>
+    <Button
+        android:id="@+id/save_contact"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/btn_bg_color_selector"
+        android:enabled="false"
+        android:text="@string/save_contact"
+        android:textColor="@color/colorButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp">
+<!--    <RelativeLayout-->
+<!--        android:id="@+id/selection_chat_user"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="vertical"-->
+<!--        android:padding="10dp">-->
+
+<!--        <TextView-->
+<!--            android:id="@+id/selection_contact_unread_count"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:scaleType="fitStart"-->
+<!--            android:layout_marginEnd="0dp"-->
+<!--            android:padding="2dp"-->
+<!--            android:background="#cccccc"-->
+<!--            android:gravity="center"-->
+<!--            android:minWidth="17sp"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:minHeight="17sp"-->
+<!--            android:paddingBottom="1dp"-->
+<!--            android:paddingLeft="4dp"-->
+<!--            android:paddingRight="4dp"-->
+<!--            android:textColor="#ffffffff"-->
+<!--            android:textSize="12sp"-->
+<!--            android:visibility="visible"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_alignParentTop="true"-->
+<!--            android:layout_alignParentEnd="true"-->
+<!--            />-->
+<!--    </RelativeLayout>-->
+
+    <TextView
+        android:id="@+id/selection_contact_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:textAppearance="@android:style/TextAppearance.Material.Small"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/selection_contact_last_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selection_contact_name"
+        android:layout_marginTop="5dp"
+        android:textColor="@android:color/black"/>
+
+    <TextView
+        android:id="@+id/selection_contact_last_message_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/selection_contact_name"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/colorDarkText"
+        android:textSize="12sp"/>
+</RelativeLayout>

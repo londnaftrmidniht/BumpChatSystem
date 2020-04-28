@@ -1,0 +1,198 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "94b332d8870d92567098327770ea3dd2",
+    "entities": [
+      {
+        "tableName": "attachments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`attachment_id` INTEGER NOT NULL, `message_id` INTEGER, `name` TEXT, `public_key` TEXT, PRIMARY KEY(`attachment_id`))",
+        "fields": [
+          {
+            "fieldPath": "attachment_id",
+            "columnName": "attachment_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "message_id",
+            "columnName": "message_id",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "public_key",
+            "columnName": "public_key",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "attachment_id"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "contacts",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`inbox_identifier` TEXT NOT NULL, `inbox_public_key` TEXT, `inbox_private_key` TEXT, `name` TEXT, `recipient_identifier` TEXT, `recipient_public_key` TEXT, `shared_aes_key` TEXT, `claimed` INTEGER, PRIMARY KEY(`inbox_identifier`))",
+        "fields": [
+          {
+            "fieldPath": "inbox_identifier",
+            "columnName": "inbox_identifier",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inbox_public_key",
+            "columnName": "inbox_public_key",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "inbox_private_key",
+            "columnName": "inbox_private_key",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "recipient_identifier",
+            "columnName": "recipient_identifier",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "recipient_public_key",
+            "columnName": "recipient_public_key",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "shared_aes_key",
+            "columnName": "shared_aes_key",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "claimed",
+            "columnName": "claimed",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "inbox_identifier"
+          ],
+          "autoGenerate": false
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "messages",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`message_id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `inbox_identifier` TEXT, `message` TEXT, `date` INTEGER, `incoming` INTEGER, `read` INTEGER, FOREIGN KEY(`inbox_identifier`) REFERENCES `contacts`(`inbox_identifier`) ON UPDATE NO ACTION ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "message_id",
+            "columnName": "message_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "inbox_identifier",
+            "columnName": "inbox_identifier",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "message",
+            "columnName": "message",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "date",
+            "columnName": "date",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "incoming",
+            "columnName": "incoming",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "read",
+            "columnName": "read",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "message_id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_messages_inbox_identifier",
+            "unique": false,
+            "columnNames": [
+              "inbox_identifier"
+            ],
+            "createSql": "CREATE  INDEX `index_messages_inbox_identifier` ON `${TABLE_NAME}` (`inbox_identifier`)"
+          },
+          {
+            "name": "index_messages_date",
+            "unique": false,
+            "columnNames": [
+              "date"
+            ],
+            "createSql": "CREATE  INDEX `index_messages_date` ON `${TABLE_NAME}` (`date`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "contacts",
+            "onDelete": "CASCADE",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "inbox_identifier"
+            ],
+            "referencedColumns": [
+              "inbox_identifier"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [
+      {
+        "viewName": "ContactOverview",
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT   c.inbox_identifier,   c.name,   MAX(m.message_id) AS lastMessageId,   (SELECT message FROM messages WHERE message_id = m.message_id) AS lastMessage,   (SELECT date FROM messages WHERE message_id = m.message_id) AS lastMessageDate,   (SELECT COUNT(*) FROM messages WHERE inbox_identifier = c.inbox_identifier AND read = 0) AS unreadMessages FROM   messages m INNER JOIN   contacts c ON m.inbox_identifier = c.inbox_identifier GROUP BY   m.inbox_identifier ORDER BY   m.message_id DESC"
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '94b332d8870d92567098327770ea3dd2')"
+    ]
+  }
+}

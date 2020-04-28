@@ -1,0 +1,8 @@
+<resources>
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+<!--        <item name="android:actionBarStyle">@style/AppActionBarTheme</item>-->
+    </style>
+    <style name="AppActionBarTheme">
+        <item name="android:background">#616161</item>
+    </style>
+</resources>

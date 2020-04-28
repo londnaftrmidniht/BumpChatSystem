@@ -1,0 +1,2 @@
+configurations.maybeCreate("default")
+artifacts.add("default", file('sqlcipher-4.2.0-release.aar'))

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contact_edit_layout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/contact_edit_name_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/name"
+        android:textSize="24sp"
+        android:labelFor="@id/contact_edit_name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/contact_edit_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@+id/contact_edit_name_label"
+        app:layout_constraintTop_toBottomOf="@+id/contact_edit_name_label" />
+
+    <Button
+        android:id="@+id/save_edit_contact"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/btn_bg_color_selector"
+        android:enabled="false"
+        android:text="@string/save_contact"
+        android:textColor="@color/colorButtonText"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
